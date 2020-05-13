@@ -51,3 +51,30 @@ void _pall(stack_t **stack, unsigned int line_number)
 	}
 
 }
+
+/**
+ * _pop - removes the top element of the stack.
+ * @stack: Stack Manager.
+ * @line_number: Data for make push
+ *
+ * Return: Nothing
+ */
+
+void _pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *deleted_node;
+
+	if (*stack)
+	{
+		deleted_node = *stack;
+		if ((*stack)->next)
+			(*stack)->next->prev = NULL;
+		*stack = (*stack)->next;
+		free(deleted_node);
+	}
+	else
+	{
+		printf("stderr, L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+}
