@@ -1,5 +1,7 @@
 #include "monty.h"
 
+#define F_NAME av[1]
+
 /**
  * main - The main function is the beginning of interpreter.
  * @ac: Arguments Counter.
@@ -10,12 +12,10 @@
 
 int main(int ac, char **av)
 {
-	(void)av;
-
 	if (ac != 2)
 		file_error();
 
-	/* SOME CODE... */
+	open_file(F_NAME);
 
 	return (0);
 }
