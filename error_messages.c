@@ -34,9 +34,11 @@ void open_error(char *filename)
  * Return: Nothing.
  */
 
-void line_error_code(int line, char *opcode)
+void line_error_code(int *line, char *opcode)
 {
-	fprintf(stderr, "L%i: unknown instruction %s\n", line, opcode);
+	fprintf(stderr, "L%i: unknown instruction %s\n", line[1], opcode);
+	free(line);
+	free(opcode);
 	exit(EXIT_FAILURE);
 }
 
