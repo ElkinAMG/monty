@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <string.h>
 #include "structures.h"
 
 /* MACROS */
@@ -14,6 +14,9 @@
 #define DELIMITER " \n"
 
 /* PROTOTYPES */
+
+void tokenizer(char *line);
+void read_file(FILE *file);
 
 /* Error Messages */
 void file_error(void);

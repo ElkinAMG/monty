@@ -9,7 +9,7 @@
  *
  *
  */
-
+/*
 int execute(char *opcode)
 {
         instruction_t intruc[] = {
@@ -18,3 +18,4 @@ int execute(char *opcode)
 		{NULL, NULL}
 	};
 }
+*/

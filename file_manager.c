@@ -15,7 +15,20 @@ int open_file(char *filename)
 	if (!fd)
 		open_error(filename);
 
-	
+	read_file(fd);
 
 	return (0);
+}
+
+void read_file(FILE *file)
+{
+	char *opcode = NULL;
+	size_t  size = 0;
+
+        while (getline(&opcode, &size, file) != EOF)
+	{
+		tokenizer(opcode);
+	}
+        free(opcode);
+	fclose(file);
 }
