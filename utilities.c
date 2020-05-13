@@ -43,6 +43,9 @@ void freeStack(stack_t *stack)
 
 int isNumber(char *data)
 {
+	if (!data)
+		return (FALSE);
+
 	if (*data == '-')
 		data++;
 
