@@ -32,6 +32,7 @@ void read_file(FILE *file)
 	char *opcode = NULL;
 	size_t  size = 0;
 	int *ops;
+	stack_t *stack = NULL;
 
 	ops = malloc(sizeof(int) * 2);
 	if (!ops)
@@ -39,14 +40,22 @@ void read_file(FILE *file)
 
 	while (getline(&opcode, &size, file) != EOF)
 	{
-		tokenizer(opcode, ops);
+		tokenizer(opcode, ops, &stack);
 		if (ops[0] == FALSE)
 		{
+			freeStack(stack);
 			fclose(file);
 			line_error_code(ops, opcode);
 		}
+		else if (ops[0] == 2)
+		{
+			freeStack(stack);
+			fclose(file);
+			push_error(ops, opcode);
+		}
 	}
 
+	freeStack(stack);
 	free(opcode);
 	free(ops);
 	fclose(file);

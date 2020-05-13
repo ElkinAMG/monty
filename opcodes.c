@@ -1,7 +1,15 @@
 #include "monty.h"
 
 
-int execute(char *opcode[2])
+/**
+ * execute - It executes the respective opcode.
+ * @opcode: It's an array with opcode/data.
+ * @stack: It's the stack data structure.
+ *
+ * Return: It returns 0 on success, otherwise 1.
+ */
+
+int execute(char *opcode[2], stack_t **stack)
 {
 	instruction_t op[] = {
 		{"push", _push},
@@ -10,7 +18,6 @@ int execute(char *opcode[2])
 	};
 
 	unsigned int data = 0, tripper;
-	static stack_t *stack;
 
 	if (opcode[1] != NULL)
 		data = atoi(opcode[1]);
@@ -21,11 +28,11 @@ int execute(char *opcode[2])
 		{
 			if (strcmp(op[tripper].opcode, opcode[0]) == TRUE)
 			{
-				op[tripper].f(&stack, data);
+				op[tripper].f(stack, data);
 				return (TRUE);
 			}
 		}
 	}
 
-	return (!opcode[0] ? TRUE : FALSE);
+	return (!opcode[0] ? TRUE : opcode[0][0] == '#' ? TRUE : FALSE);
 }

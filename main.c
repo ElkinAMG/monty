@@ -17,5 +17,5 @@ int main(int ac, char **av)
 
 	open_file(F_NAME);
 
-	return (0);
+	return (EXIT_SUCCESS);
 }

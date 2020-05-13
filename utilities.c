@@ -1,10 +1,10 @@
 #include "monty.h"
 
 /**
- * isPushing - asdfasdfasdfasdfasd
- * @opcode: asdfasdfadsfasdfsadf
+ * isPushing - It checks is the opcode is equal to push.
+ * @opcode: It's the given opcode.
  *
- * Return: asdsafasdfadsfasdfa
+ * Return: It returns 0 on success, otherwise 1.
  */
 
 int isPushing(char *opcode)
@@ -15,37 +15,40 @@ int isPushing(char *opcode)
 	return (strcmp(opcode, "push"));
 }
 
-char *_itoa(int number)
+/**
+ * freeStack - It frees the stack data structure.
+ * @stack: It's the stack data structure.
+ *
+ * Return: Nothing.
+ */
+
+void freeStack(stack_t *stack)
 {
-	int i;
-	char *s;
+	stack_t *mirror = stack;
 
-	s = malloc(sizeof(char *));
-	if (!s)
-		malloc_error();
-
-	i = 0;
-	do {
-		s[i++] = number % 10 + '0';
-	} while ((number /= 10) > 0);
-
-	s[i] = '\0';
-	reverse(s);
-
-	return (s);
+	while (stack)
+	{
+		stack = stack->next;
+		free(mirror);
+		mirror = stack;
+	}
 }
 
-char *reverse(char *s)
+/**
+ * isNumber - It checks whether or not the given data is integer.
+ * @data: It's the given data.
+ *
+ * Return: It returns 0 on success, otherwise 1.
+ */
+
+int isNumber(char *data)
 {
-	int i, j;
-	char c;
+	if (*data == '-')
+		data++;
 
-	for (i = 0, j = strlen(s) - 1; i < j; i++, j--)
-	{
-		c = s[i];
-		s[i] = s[j];
-		s[j] = c;
-	}
+	for (; *data; data++)
+		if (!isdigit(*data))
+			return (FALSE);
 
-	return (s);
+	return (TRUE);
 }

@@ -36,7 +36,9 @@ void open_error(char *filename)
 
 void line_error_code(int *line, char *opcode)
 {
-	fprintf(stderr, "L%i: unknown instruction %s\n", line[1], opcode);
+	char *code = strtok(opcode, DELIMITER);
+
+	fprintf(stderr, "L%i: unknown instruction %s\n", line[1], code);
 	free(line);
 	free(opcode);
 	exit(EXIT_FAILURE);
