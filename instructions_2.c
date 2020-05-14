@@ -72,7 +72,7 @@ void _div(stack_t **stack, UNUSED unsigned int line_number)
 		for (; (*stack)->next->next; stack = &(*stack)->next)
 			;
 
-		(*stack)->n = (*stack)->next->n / (*stack)->n;
+		(*stack)->n /= (*stack)->next->n;
 		_pop(stack, 0);
 	}
 }
@@ -91,7 +91,7 @@ void _mod(stack_t **stack, UNUSED unsigned int line_number)
 	{
 		for (; (*stack)->next->next; stack = &(*stack)->next)
 			;
-		(*stack)->n = (*stack)->next->n % (*stack)->n;
+		(*stack)->n %= (*stack)->next->n;
 		_pop(stack, 0);
 	}
 }
