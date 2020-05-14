@@ -14,7 +14,6 @@ int execute(char *opcode[2], stack_t **stack)
 	instruction_t op[] = {
 		{"push", _push},
 		{"pall", _pall},
-		{"pop", _pop},
 		{NULL, NULL}
 	};
 
