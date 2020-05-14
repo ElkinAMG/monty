@@ -17,6 +17,11 @@ int execute(char *opcode[2], stack_t **stack)
 		{"pint", _pint},
 		{"swap", _swap},
 		{"nop", _nop},
+		{"add", _add},
+		{"sub", _sub},
+		{"mul", _mul},
+		{"div", _div},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
@@ -38,4 +43,17 @@ int execute(char *opcode[2], stack_t **stack)
 	}
 
 	return (!opcode[0] ? TRUE : opcode[0][0] == '#' ? TRUE : FALSE);
+}
+
+/**
+ * _nop - It makes nothing.
+ * @stack: Stack Manager.
+ * @line_number: Data for make a push.
+ *
+ * Return: Nothing.
+ */
+
+void _nop(UNUSED stack_t **stack, UNUSED unsigned int line_number)
+{
+	;
 }
