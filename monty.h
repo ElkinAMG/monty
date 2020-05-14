@@ -12,7 +12,8 @@
 /* MACROS */
 #define TRUE 0
 #define FALSE 1
-#define DELIMITER " \t\r\n\a\""
+#define DELIMITER " \t\r\n\a"
+#define UNUSED __attribute__((__unused__))
 
 /* PROTOTYPES */
 
