@@ -33,4 +33,19 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct op_selector - opcode and its function
+ * @opcode: the opcode
+ * @code: the code to return
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+typedef struct op_selector
+{
+	char *opcode;
+	int code;
+} op_t;
+
+
 #endif /* STRUCTURES */

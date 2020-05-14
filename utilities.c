@@ -77,22 +77,36 @@ int isEmpty(stack_t **stack)
 }
 
 /**
- * pt_pp_swp - It checks whether or not is pop, pint or swap.
+ * opcoding - It checks whether or not is pop, pint or swap.
  * @s: It's the given opcode.
  *
  * Return: It returns 0 on not pop or pint.
  */
 
-int pt_pp_swp(char *s)
+int opcoding(char *s)
 {
 	int value = 0;
+	int index;
+	op_t op[] = {
+		{"pop", 3},
+		{"pint", 4},
+		{"swap", 5},
+		{"add", 6},
+		{"sub", 7},
+		{"div", 8},
+		{"mul", 9},
+		{"mod", 10},
+		{NULL, TRUE}
+	};
 
-	if (strcmp(s, "pop") == 0)
-		value = 3;
-	else if (strcmp(s, "pint") == 0)
-		value = 4;
-	else if (strcmp(s, "swap") == 0)
-		value = 5;
+	for (index = 0; op[index].opcode; index++)
+	{
+		if (strcmp(op[index].opcode, s) == 0)
+		{
+			value = op[index].code;
+			break;
+		}
+	}
 
 	return (value);
 }

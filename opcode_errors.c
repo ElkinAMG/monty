@@ -63,3 +63,20 @@ void swap_error(int *ops, char *opcode)
 	free(opcode);
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * math_errors - It prints an error message for wrong math operation.
+ * @ops: It's an array with data to free.
+ * @opcode: The given opcode.
+ * @math_o: The given math operation.
+ *
+ * Return: Nothing.
+ */
+
+void math_errors(int *ops, char *opcode, char math_o[3])
+{
+	fprintf(stderr, "L%i: can't %s, stack too short\n", ops[1], math_o);
+	free(ops);
+	free(opcode);
+	exit(EXIT_FAILURE);
+}

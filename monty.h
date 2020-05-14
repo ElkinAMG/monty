@@ -14,6 +14,9 @@
 #define FALSE 1
 #define DELIMITER " \t\r\n\a"
 #define UNUSED __attribute__((__unused__))
+#define OP(x) opcoding(x)
+#define VOID(x) (isEmpty(x) == 0)
+#define POP_PINT(x) (OP(x) > 0 && OP(x) < 5)
 
 /* PROTOTYPES */
 
@@ -39,6 +42,8 @@ void push_error(int *ops, char *opcode);
 void pop_error(int *ops, char *opcode);
 void pint_error(int *ops, char *opcode);
 void swap_error(int *ops, char *opcode);
+void math_errors(int *ops, char *opcode, char math_o[3]);
+void zero_error(int *ops, char *opcode);
 void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
 
 /* File Management */
@@ -52,6 +57,7 @@ int execute(char *opcode[2], stack_t **stack);
 void freeStack(stack_t *stack);
 int isNumber(char *data);
 int isEmpty(stack_t **stack);
-int pt_pp_swp(char *s);
+int opcoding(char *s);
+int divide_by_zero(char *s, stack_t **stack);
 
 #endif /* _MONTY_INTERPRETER_ */
