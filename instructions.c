@@ -62,19 +62,18 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 void _pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *deleted_node;
+	(void) line_number;
+	stack_t *prev, *next;
 
 	if (*stack)
 	{
-		deleted_node = *stack;
-		if ((*stack)->next)
-			(*stack)->next->prev = NULL;
-		*stack = (*stack)->next;
-		free(deleted_node);
-	}
-	else
-	{
-		printf("stderr, L%u: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
+		for (; (*stack)->next; stack = &(*stack)->next)
+			;
+		prev = (!(*stack)->prev ? NULL : (*stack)->prev);
+		next = (!(*stack)->next ? NULL : (*stack)->next);
+		free(*stack);
+		*stack = !next ? NULL : next;
+		if (*stack)
+			(*stack)->prev = prev;
 	}
 }
