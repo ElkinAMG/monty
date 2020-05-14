@@ -55,3 +55,15 @@ int isNumber(char *data)
 
 	return (TRUE);
 }
+
+/**
+ * isEmpty - It checks is the opcode is equal to push.
+ * @stack: It's the given stack.
+ *
+ * Return: It returns 0 on success, otherwise 1.
+ */
+
+int isEmpty(stack_t **stack)
+{
+	return (!*stack ? TRUE : FALSE);
+}

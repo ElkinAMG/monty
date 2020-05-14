@@ -30,7 +30,7 @@ int open_file(char *filename)
 void read_file(FILE *file)
 {
 	char *opcode = NULL;
-	size_t  size = 0;
+	size_t size = 0;
 	int *ops;
 	stack_t *stack = NULL;
 
@@ -41,18 +41,7 @@ void read_file(FILE *file)
 	while (getline(&opcode, &size, file) != EOF)
 	{
 		tokenizer(opcode, ops, &stack);
-		if (ops[0] == FALSE)
-		{
-			freeStack(stack);
-			fclose(file);
-			line_error_code(ops, opcode);
-		}
-		else if (ops[0] == 2)
-		{
-			freeStack(stack);
-			fclose(file);
-			push_error(ops, opcode);
-		}
+		error_handler(&stack, file, ops, opcode);
 	}
 
 	freeStack(stack);

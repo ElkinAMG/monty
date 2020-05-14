@@ -23,12 +23,60 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 		{
 			ar[0] = 2;
 			ar[1] = c_line++;
-			return (ar);
+			goto out;
+		}
+	}
+
+	if (container[0] != NULL)
+	{
+		if (strcmp(container[0], "pop") == 0)
+		{
+			if (isEmpty(stack) == TRUE)
+			{
+				ar[0] = 3;
+				ar[1] = c_line++;
+				goto out;
+			}
 		}
 	}
 
 	ar[0] = execute(container, stack);
 	ar[1] = c_line++;
+	goto out;
 
+out:
 	return (ar);
+}
+
+/**
+ * error_handler - It manages the error flow.
+ * @stack: It's the stack data structure.
+ * @file: It's the given file for closing.
+ * @op: Array with datas.
+ * @opcode: Given opcode.
+ *
+ * Return: Nothing.
+ */
+
+void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
+{
+	if (op[0] == TRUE)
+		return;
+
+	freeStack(*stack);
+	fclose(file);
+
+	switch (op[0])
+	{
+	case 1:
+		line_error_code(op, opcode);
+		break;
+	case 2:
+		push_error(op, opcode);
+		break;
+	case 3:
+		pop_error(op, opcode);
+		break;
+	}
+
 }

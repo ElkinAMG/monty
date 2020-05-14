@@ -27,6 +27,8 @@ void open_error(char *filename);
 void line_error_code(int *line, char *opcode);
 void malloc_error(void);
 void push_error(int *ops, char *opcode);
+void pop_error(int *ops, char *opcode);
+void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
 
 /* File Management */
 int open_file(char *filename);
@@ -40,5 +42,6 @@ void freeStack(stack_t *stack);
 char *_itoa(int number);
 char *reverse(char *s);
 int isNumber(char *data);
+int isEmpty(stack_t **stack);
 
 #endif /* _MONTY_INTERPRETER_ */

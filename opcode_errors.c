@@ -17,3 +17,21 @@ void push_error(int *ops, char *opcode)
 	exit(EXIT_FAILURE);
 
 }
+
+/**
+ * pop_error - It prints an error message for invalid pop.
+ * @ops: It's an array with data to free.
+ * @opcode: The given opcode.
+ *
+ * Return: Nothing.
+ */
+
+void pop_error(int *ops, char *opcode)
+{
+
+	fprintf(stderr, "L%i: can't pop an empty stack\n", ops[1]);
+	free(ops);
+	free(opcode);
+	exit(EXIT_FAILURE);
+
+}
