@@ -47,3 +47,19 @@ void pint_error(int *ops, char *opcode)
 	free(opcode);
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * swap_error - It prints an error message for wrong swap.
+ * @ops: It's an array with data to free.
+ * @opcode: The given opcode.
+ *
+ * Return: Nothing.
+ */
+
+void swap_error(int *ops, char *opcode)
+{
+	fprintf(stderr, "L%i: can't swap, stack too short\n", ops[1]);
+	free(ops);
+	free(opcode);
+	exit(EXIT_FAILURE);
+}

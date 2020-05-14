@@ -105,3 +105,29 @@ void _pint(stack_t **stack, unsigned int line_number)
 	}
 
 }
+
+/**
+ * _swap - It swaps the top two elements of the stack.
+ * @stack: Stack Manager.
+ * @line_number: Some data.
+ *
+ * Return: Nothing
+ */
+
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	int swap;
+
+	(void)line_number;
+
+	if (*stack)
+	{
+		for (; (*stack)->next; stack = &(*stack)->next)
+			;
+
+		swap = (*stack)->n;
+		(*stack)->n = (*stack)->prev->n;
+		(*stack)->prev->n = swap;
+	}
+
+}

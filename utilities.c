@@ -65,17 +65,25 @@ int isNumber(char *data)
 
 int isEmpty(stack_t **stack)
 {
-	return (!*stack ? TRUE : FALSE);
+	int i = 0;
+
+	if (*stack)
+	{
+		for (; *stack; stack = &(*stack)->next, i++)
+			;
+	}
+
+	return (i);
 }
 
 /**
- * pint_pop - It checks whether or not is pop or pint.
+ * pt_pp_swp - It checks whether or not is pop, pint or swap.
  * @s: It's the given opcode.
  *
  * Return: It returns 0 on not pop or pint.
  */
 
-int pint_pop(char *s)
+int pt_pp_swp(char *s)
 {
 	int value = 0;
 
@@ -83,6 +91,8 @@ int pint_pop(char *s)
 		value = 3;
 	else if (strcmp(s, "pint") == 0)
 		value = 4;
+	else if (strcmp(s, "swap") == 0)
+		value = 5;
 
 	return (value);
 }

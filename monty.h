@@ -21,6 +21,7 @@ void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
 
 /* Error Messages */
 void file_error(void);
@@ -30,6 +31,7 @@ void malloc_error(void);
 void push_error(int *ops, char *opcode);
 void pop_error(int *ops, char *opcode);
 void pint_error(int *ops, char *opcode);
+void swap_error(int *ops, char *opcode);
 void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
 
 /* File Management */
@@ -43,6 +45,6 @@ int execute(char *opcode[2], stack_t **stack);
 void freeStack(stack_t *stack);
 int isNumber(char *data);
 int isEmpty(stack_t **stack);
-int pint_pop(char *s);
+int pt_pp_swp(char *s);
 
 #endif /* _MONTY_INTERPRETER_ */

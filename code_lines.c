@@ -12,37 +12,36 @@
 int *tokenizer(char *line, int *ar, stack_t **stack)
 {
 	static unsigned int c_line = 1;
-	char *container[2] = {NULL, NULL};
-	int selector = 0;
+	char *box[2] = {NULL, NULL};
 
-	container[0] = strtok(line, DELIMITER);
-	if (line != NULL && isPushing(container[0]) == TRUE)
+	box[0] = strtok(line, DELIMITER);
+	if (line != NULL && isPushing(box[0]) == TRUE)
 	{
-		container[1] = strtok(NULL, DELIMITER);
-		if (isNumber(container[1]) == FALSE)
+		box[1] = strtok(NULL, DELIMITER);
+		if (isNumber(box[1]) == FALSE)
 		{
 			ar[0] = 2, ar[1] = c_line++;
 			goto out;
 		}
 	}
 
-	if (container[0] != NULL)
+	if (box[0] != NULL && isPushing(box[0]) != TRUE)
 	{
-		selector = pint_pop(container[0]);
-		if (selector != 0)
+		if (isEmpty(stack) < 2)
 		{
-			if (isEmpty(stack) == TRUE)
-			{
-				if (selector == 3)
-					ar[0] = 3, ar[1] = c_line++;
-				else if (selector == 4)
-					ar[0] = 4, ar[1] = c_line++;
-				goto out;
-			}
+			if (pt_pp_swp(box[0]) != 5 && isEmpty(stack) == 0)
+				ar[0] = pt_pp_swp(box[0]);
+			else if (pt_pp_swp(box[0]) == 5 && isEmpty(stack) < 2)
+				ar[0] = 5;
+			else
+				goto execution;
+			ar[1] = c_line++;
+			goto out;
 		}
 	}
 
-	ar[0] = execute(container, stack);
+execution:
+	ar[0] = execute(box, stack);
 	ar[1] = c_line++;
 	goto out;
 
@@ -81,6 +80,9 @@ void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 		break;
 	case 4:
 		pint_error(op, opcode);
+		break;
+	case 5:
+		swap_error(op, opcode);
 		break;
 	}
 
