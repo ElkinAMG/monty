@@ -42,7 +42,7 @@ void pop_error(int *ops, char *opcode)
 
 void pint_error(int *ops, char *opcode)
 {
-	fprintf(stderr, "L%i: can't pick, stack empty\n", ops[1]);
+	fprintf(stderr, "L%i: can't pint, stack empty\n", ops[1]);
 	free(ops);
 	free(opcode);
 	exit(EXIT_FAILURE);
