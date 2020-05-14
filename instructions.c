@@ -83,3 +83,25 @@ void _pop(stack_t **stack, unsigned int line_number)
 			(*stack)->prev = prev;
 	}
 }
+
+/**
+ * _pint - It prints the value at the top of the stack.
+ * @stack: Stack Manager.
+ * @line_number: Data for make push
+ *
+ * Return: Nothing
+ */
+
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+
+	if (*stack)
+	{
+		for (; (*stack)->next; stack = &(*stack)->next)
+			;
+
+		printf("%i\n", (*stack)->n);
+	}
+
+}

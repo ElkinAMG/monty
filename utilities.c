@@ -67,3 +67,22 @@ int isEmpty(stack_t **stack)
 {
 	return (!*stack ? TRUE : FALSE);
 }
+
+/**
+ * pint_pop - It checks whether or not is pop or pint.
+ * @s: It's the given opcode.
+ *
+ * Return: It returns 0 on not pop or pint.
+ */
+
+int pint_pop(char *s)
+{
+	int value = 0;
+
+	if (strcmp(s, "pop") == 0)
+		value = 3;
+	else if (strcmp(s, "pint") == 0)
+		value = 4;
+
+	return (value);
+}

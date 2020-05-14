@@ -13,28 +13,30 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 {
 	static unsigned int c_line = 1;
 	char *container[2] = {NULL, NULL};
+	int selector = 0;
 
 	container[0] = strtok(line, DELIMITER);
-
 	if (line != NULL && isPushing(container[0]) == TRUE)
 	{
 		container[1] = strtok(NULL, DELIMITER);
 		if (isNumber(container[1]) == FALSE)
 		{
-			ar[0] = 2;
-			ar[1] = c_line++;
+			ar[0] = 2, ar[1] = c_line++;
 			goto out;
 		}
 	}
 
 	if (container[0] != NULL)
 	{
-		if (strcmp(container[0], "pop") == 0)
+		selector = pint_pop(container[0]);
+		if (selector != 0)
 		{
 			if (isEmpty(stack) == TRUE)
 			{
-				ar[0] = 3;
-				ar[1] = c_line++;
+				if (selector == 3)
+					ar[0] = 3, ar[1] = c_line++;
+				else if (selector == 4)
+					ar[0] = 4, ar[1] = c_line++;
 				goto out;
 			}
 		}
@@ -76,6 +78,9 @@ void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 		break;
 	case 3:
 		pop_error(op, opcode);
+		break;
+	case 4:
+		pint_error(op, opcode);
 		break;
 	}
 

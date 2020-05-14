@@ -1,6 +1,5 @@
 #include "monty.h"
 
-
 /**
  * execute - It executes the respective opcode.
  * @opcode: It's an array with opcode/data.
@@ -15,6 +14,7 @@ int execute(char *opcode[2], stack_t **stack)
 		{"push", _push},
 		{"pall", _pall},
 		{"pop", _pop},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 
