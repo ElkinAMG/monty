@@ -117,7 +117,7 @@ void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 
 int divide_by_zero(char *s, stack_t **stack)
 {
-	if (*stack && (strcmp(s, "div") == 0 || strcmp(s, "mod") == 0))
+	if (stack && *stack && (strcmp(s, "div") == 0 || strcmp(s, "mod") == 0))
 	{
 		for (; (*stack)->next; stack = &(*stack)->next)
 			;
