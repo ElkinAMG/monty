@@ -24,7 +24,6 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 			goto out;
 		}
 	}
-
 	if (box[0] != NULL)
 	{
 		if (isPushing(box[0]) != TRUE)
@@ -35,17 +34,16 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 				ar[0] = OP(box[0]);
 			else
 				goto execution;
-			if (D_ZERO(box[0], stack) == -1 && isEmpty(stack) >= 2)
-			{
-				ar[0] = -1, ar[1] = c_line++;
-				goto out;
-			}
 			ar[1] = c_line++;
 			goto out;
 		}
 	}
-
 execution:
+	if (D_ZERO(box[0], stack) == -1 && isPushing(box[0]) != TRUE)
+	{
+		ar[0] = -1, ar[1] = c_line++;
+		goto out;
+	}
 	ar[0] = execute(box, stack);
 	ar[1] = c_line++;
 	goto out;
@@ -117,7 +115,7 @@ void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 
 int divide_by_zero(char *s, stack_t **stack)
 {
-	if (stack && *stack && (strcmp(s, "div") == 0 || strcmp(s, "mod") == 0))
+	if (*stack && (strcmp(s, "div") == 0 || strcmp(s, "mod") == 0))
 	{
 		for (; (*stack)->next; stack = &(*stack)->next)
 			;
