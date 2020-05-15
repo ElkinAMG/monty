@@ -35,7 +35,7 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 				ar[0] = OP(box[0]);
 			else
 				goto execution;
-			if (D_ZERO(box[0], stack) == -1 && !(VOID(stack)))
+			if (D_ZERO(box[0], stack) == -1 && isEmpty(stack) >= 2)
 			{
 				ar[0] = -1, ar[1] = c_line++;
 				goto out;
