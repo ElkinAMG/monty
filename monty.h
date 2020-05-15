@@ -17,7 +17,7 @@
 #define OP(x) opcoding(x)
 #define VOID(x) (isEmpty(x) == 0)
 #define POP_PINT(x) (OP(x) > 0 && OP(x) < 5)
-#define D_ZERO(x, y) (divide_by_zero(x, y))
+#define D_ZERO(x, y) (x != NULL && divide_by_zero(x, y) == -1)
 
 /* PROTOTYPES */
 

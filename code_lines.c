@@ -39,7 +39,7 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 		}
 	}
 execution:
-	if (D_ZERO(box[0], stack) == -1 && isPushing(box[0]) != TRUE)
+	if (D_ZERO(box[0], stack) && isPushing(box[0]) != TRUE)
 	{
 		ar[0] = -1, ar[1] = c_line++;
 		goto out;
