@@ -27,11 +27,6 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 
 	if (box[0] != NULL)
 	{
-		if (divide_by_zero(box[0], stack) == -1 && VOID(stack))
-		{
-			ar[0] = -1, ar[1] = c_line++;
-			goto out;
-		}
 		if (isPushing(box[0]) != TRUE)
 		{
 			if (VOID(stack) && POP_PINT(box[0]))
@@ -46,6 +41,11 @@ int *tokenizer(char *line, int *ar, stack_t **stack)
 	}
 
 execution:
+	if (divide_by_zero(box[0], stack) == -1)
+	{
+		ar[0] = -1, ar[1] = c_line++;
+		goto out;
+	}
 	ar[0] = execute(box, stack);
 	ar[1] = c_line++;
 	goto out;
